@@ -1,7 +1,11 @@
 import React from 'react';
+import NavBar from './Components/NavBar';
+import './Styles/App.css';
 
 export default function App() {
   return (
-    <div>App</div>
+    <div style={{ background: 'black' }}>
+      <NavBar />
+    </div>
   );
 }
