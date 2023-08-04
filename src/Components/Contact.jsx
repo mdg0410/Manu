@@ -13,10 +13,15 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const mensajeEncoded = encodeURIComponent(mensaje);
-    const numeroTelefono = '++593 99 280 2725'; // Reemplaza con tu número de WhatsApp empresarial
+    const numeroTelefono = '+593 99 280 2725'; // Reemplaza con tu número de WhatsApp empresarial
+    const enlaceWhatsAppAndroid = `whatsapp://send?phone=${numeroTelefono}&text=${mensajeEncoded}`;
     const enlaceWhatsAppWeb = `https://web.whatsapp.com/send?phone=${numeroTelefono}&text=${mensajeEncoded}`;
     dispatch(setMensaje(''));
-    window.location.href = enlaceWhatsAppWeb;
+    if (/(android)/i.test(navigator.userAgent)) {
+      window.location.href = enlaceWhatsAppAndroid;
+    } else {
+      window.open(enlaceWhatsAppWeb, '_blank');
+    }
   };
 
   return (
